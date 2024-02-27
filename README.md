@@ -1,4 +1,4 @@
-#Blog
+# Blog
 
 ## Endpoint Api :
 
@@ -27,7 +27,7 @@
 - GET /api/v1/post/:postId: Get details of a specific post.
 - POST /api/v1/post/:postId: Update of a specific post.
 - DELETE /api/v1/post/:postId: Delete of a specific post.
-- GET /api/v1/post/:postId/comments: Get a specific post reviews
+- GET /api/v1/post/:postId/comments: Get a specific post comments
 
 
 ### Comment Endpoints:
@@ -38,7 +38,7 @@
 - PATCH /comments/{id}: Update comment by ID.
 - DELETE /comments/{id}: Delete review by ID.
 
-###Likes and Favorites:
+### Likes and Favorites:
 
 - POST /api/posts/:id/like: Like a blog post.
 - DELETE /api/posts/:id/like: Remove a like from a blog post.
@@ -49,8 +49,12 @@
 models:
 
 user : username , email , password
-post : title , content , author , likes , comments
+
+post : title , content , author , likes 
+
 Comment : user , post , content
+
 like : user , post
+
 favorite : user , post
 
