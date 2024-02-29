@@ -29,7 +29,7 @@ const errorHandlerMiddleware = require("./middleware/error-handler");
 // routers
 const authRouter =  require("./routes/authRoutes") 
 const userRouter = require("./routes/userRoutes")
-
+const postRouter = require("./routes/postRoutes")
 // dev
 app.use(morgan("tiny"));
 app.use(express.json()); // have acces to json data in req.body
@@ -56,7 +56,7 @@ app.get("/", (_req, res) => {
 // app.use /api routes
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/user", userRouter);
-
+app.use("/api/v1/post", postRouter)
 
 // middleware errors and not-found
 app.use(notFoundMiddleware);

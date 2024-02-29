@@ -10,11 +10,17 @@ const {
   blockUser,
 } = require("../controllers/userController");
 
-router.route("/").get(getAllUsers);
-router.route("/showMe").get(showMe);
-router.route("/updateUser").patch(updateUser);
-router.route("/updateUserPassword").patch(updateUserPassword);
-router.route("/:id").get(getSingleUser);
-router.route("/:id/block").post(blockUser);
+const {
+  authenticateUser,
+  authorizePermissions,
+  isValid,
+} = require("../middleware/authentication");
+
+router.route("/").get(authenticateUser,authorizePermissions("admin"),getAllUsers);
+router.route("/showMe").get(authenticateUser,showMe);
+router.route("/updateUser").patch(authenticateUser,updateUser);
+router.route("/updateUserPassword").patch(authenticateUser,updateUserPassword);
+router.route("/:id").get(authenticateUser,getSingleUser);
+router.route("/:id/block").post(authenticateUser,authorizePermissions("admin"),blockUser);
 
 module.exports = router;

@@ -23,10 +23,6 @@ const PostSchema = new mongoose.Schema(
       required: [true, "Please provide post category"],
       // enum: ["cyber-security", "ai", "data-science"],
     },
-    averageLikes: {
-      type: Number,
-      default: 0,
-    },
     numOfLikes: {
       type: Number,
       default: 0,

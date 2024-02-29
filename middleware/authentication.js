@@ -7,12 +7,10 @@ const authenticateUser = async (req, res, next) => {
   try {
     if (accessToken) {
       const payload = isTokenValid(accessToken);
-      console.log(payload);
       req.user = payload.user;
       return next();
     }
     const payload = isTokenValid(refreshToken);
-    console.log(payload);
     const existingToken = await Token.findOne({
       user: payload.user.userId,
       refreshToken: payload.refreshToken,
@@ -36,4 +34,10 @@ const authorizePermissions = (...roles) => {
     next();
   };
 };
-module.exports = { authenticateUser, authorizePermissions };
+const isValid = async (req, res, next) =>{
+ if(!req.user.verified){
+  throw new CustomError.UnauthenticatedError("Please verify your email");
+ }
+ next();
+}
+  module.exports = { authenticateUser, authorizePermissions, isValid };
